@@ -86,14 +86,16 @@ MATRIX_X ?= 64
 MATRIX_Y ?= 64
 SDL_SCALE_FACTOR ?= 4
 
+MARCH ?= -march=native
+
 # Basic compiler information, and we add the debug here.
 CC ?= cc
 ifeq ($(DEBUG),0)
  # Not going to use tabs here, it's a Makefile...
- CFLAGS ?= -O2 -march=native
+ CFLAGS ?= -O2 $(MARCH)
 else
  # Optimizations become non-default if debugging is on, but can still be changed
- CFLAGS ?= -march=native
+ CFLAGS ?= $(MARCH)
  CFLAGS += -Og -ggdb
  CPPFLAGS += -DDEBUG
 endif
